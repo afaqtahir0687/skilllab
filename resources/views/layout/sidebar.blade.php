@@ -82,7 +82,7 @@
                         src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-2" alt="" />Brand</a>
             </li>
             <li class="mb-2">
-                <a href="unit.html" class="text-decoration-none nav-item nav-link"><img
+                <a href="{{route('Unit.index')}}" class="text-decoration-none nav-item nav-link"><img
                         src="assets/img/menu.svg" class="img-fluid me-2" alt="" />Unit</a>
             </li>
         </ul>

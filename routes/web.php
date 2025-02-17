@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\UnitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +51,7 @@ Route::middleware(['verified','auth'])->group(function () {
         Route::get('editprofile/{id}', 'profile')->name('edit.profile');
         Route::post('updateprofile/{id}', 'updateprofile')->name('update.profile');
     });
-        
+
     Route::controller(CategoryController::class)->prefix('category')->group(function () {
         Route::get('index', 'index')->name('category.index');
         Route::post('store', 'store')->name('category.store');
@@ -76,6 +77,15 @@ Route::middleware(['verified','auth'])->group(function () {
         Route::get('show/{id}', 'show')->name('products.show');
         Route::post('edit/{id}', 'update')->name('products.update');
         Route::delete('destroy/{id}', 'destroy')->name('products.destroy');
+    });
+
+    Route::controller(UnitController::class)->prefix('Unit')->group(function () {
+        Route::get('create', 'create')->name('Unit.create');
+        Route::post('store', 'store')->name('Unit.store');
+        Route::get('index', 'index')->name('Unit.index');
+        Route::get('edit/{id}', 'edit')->name('Unit.edit');
+        Route::post('update/{id}', 'update')->name('Unit.update');
+        Route::delete('delete/{id}', 'destroy')->name('Unit.destroy');
     });
 
         //******/ stripe payment ******//

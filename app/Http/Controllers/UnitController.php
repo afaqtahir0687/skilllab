@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Unit;
+
 
 class UnitController extends Controller
 {
@@ -11,7 +13,8 @@ class UnitController extends Controller
      */
     public function index()
     {
-        //
+        $units = Unit::get();
+        return view("Unit.index");
     }
 
     /**
@@ -27,7 +30,18 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'short_name' => 'required',
+            'base_unit' => 'required',
+        ]);
+
+        $brand = new Unit();
+        $brand->name = $request->name;
+        $brand->short_name = $request->short_name;
+        $brand->base_unit = $request->base_unit;
+        $brand->save();
+        return redirect()->back()->with('success', 'Unit Created Successfully');
     }
 
     /**
